@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
+  Animated,
   FlatList,
   Platform,
   Pressable,
@@ -52,6 +53,19 @@ export default function DiscoverScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [offlineMode, setOfflineMode] = useState(false);
+  const loadingPulse = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (!loading) return;
+    const animation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(loadingPulse, { toValue: 1, duration: 700, useNativeDriver: true }),
+        Animated.timing(loadingPulse, { toValue: 0, duration: 700, useNativeDriver: true }),
+      ])
+    );
+    animation.start();
+    return () => animation.stop();
+  }, [loading, loadingPulse]);
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -92,6 +106,9 @@ export default function DiscoverScreen() {
         item.brand.toLowerCase().includes(searchQuery.toLowerCase())
       );
   }, [items, selectedCategory, searchQuery]);
+
+  const pulseOpacity = loadingPulse.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] });
+  const pulseScale = loadingPulse.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1] });
 
   const toggleWishlist = async (productId: string) => {
     const updated = wishlistIds.includes(productId)
@@ -207,8 +224,18 @@ export default function DiscoverScreen() {
         <StatusBar style="dark" />
         <HeaderBar title="Discover" subtitle="Loading curated drops" />
         <View style={styles.loadingWrap}>
-          <ActivityIndicator size="large" color={colors.primary} />
-          <Text style={styles.loadingText}>Fetching the latest picks...</Text>
+          <Animated.View
+            style={[
+              styles.loadingIndicator,
+              {
+                opacity: pulseOpacity,
+                transform: [{ scale: pulseScale }],
+              },
+            ]}
+          >
+            <ActivityIndicator size="large" color={colors.primary} />
+          </Animated.View>
+          <Animated.Text style={[styles.loadingText, { opacity: pulseOpacity }]}>Fetching the latest picks...</Animated.Text>
         </View>
       </SafeAreaView>
     );
@@ -393,8 +420,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: s(6),
   },
+  loadingIndicator: {
+    marginBottom: s(2),
+  },
   loadingText: {
-    marginTop: s(3),
+    marginTop: s(1),
     fontSize: 14,
     fontWeight: '500',
     lineHeight: 14 * 1.4,
