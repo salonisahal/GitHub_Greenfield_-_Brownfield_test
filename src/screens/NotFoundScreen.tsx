@@ -12,7 +12,7 @@ export default function NotFoundScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <Text style={styles.text}>Screen not found</Text>
       <Pressable
         onPress={() => navigation.goBack()}

@@ -101,7 +101,7 @@ export default function CartScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <HeaderBar title="Shopping Cart" subtitle="Review your selections" />
       <FlatList
         data={cartItems}

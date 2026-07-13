@@ -81,7 +81,7 @@ export default function ProductDetailsScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <FlatList
         data={productReviews}
         keyExtractor={(item) => item.id}

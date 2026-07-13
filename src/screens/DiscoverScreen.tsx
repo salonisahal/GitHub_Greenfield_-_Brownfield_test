@@ -221,7 +221,7 @@ export default function DiscoverScreen() {
   if (loading) {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <HeaderBar title="Discover" subtitle="Loading curated drops" />
         <View style={styles.loadingWrap}>
           <Animated.View
@@ -244,7 +244,7 @@ export default function DiscoverScreen() {
   if (error) {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <HeaderBar title="Discover" subtitle="Connection required" />
         <View style={styles.errorWrap}>
           <Text style={styles.errorTitle}>Unable to refresh</Text>
@@ -263,7 +263,7 @@ export default function DiscoverScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <FlatList
         data={filteredItems}
         keyExtractor={(item) => item.id}

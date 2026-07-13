@@ -81,7 +81,7 @@ export default function WishlistScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <HeaderBar title="Wishlist" subtitle="Saved for later" />
       <View style={styles.searchWrap}>
         <SearchBar value={searchQuery} onChangeText={setSearchQuery} onClear={() => setSearchQuery('')} />

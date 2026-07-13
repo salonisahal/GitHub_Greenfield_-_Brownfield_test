@@ -87,7 +87,7 @@ export default function OrdersScreen() {
   if (loading) {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <HeaderBar title="Orders" subtitle="Fetching your history" />
         <View style={styles.loadingWrap}>
           <ActivityIndicator size="large" color={colors.primary} />
@@ -100,7 +100,7 @@ export default function OrdersScreen() {
   if (error) {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <HeaderBar title="Orders" subtitle="Connection issue" />
         <View style={styles.errorWrap}>
           <Text style={styles.errorTitle}>Something went wrong</Text>
@@ -119,7 +119,7 @@ export default function OrdersScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <HeaderBar title="Orders" subtitle="Your purchase history" />
       <FlatList
         data={orders}
