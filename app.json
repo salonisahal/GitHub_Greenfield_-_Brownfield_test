@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Test Android Busines Logic Upload",
+    "slug": "testandroidbusineslogicupload",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.generated.testandroidbusineslogicupload"
+    },
+    "android": {
+      "package": "com.generated.testandroidbusineslogicupload",
+      "softwareKeyboardLayoutMode": "pan"
+    }
+  }
+}
