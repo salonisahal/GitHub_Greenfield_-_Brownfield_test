@@ -1,0 +1,20 @@
+export const colors = {
+  primary: '#0A84FF',
+  primaryDark: '#0060DF',
+  primaryLight: '#D6E8FF',
+  accent: '#FF9F0A',
+  background: '#F5F6FA',
+  surface: '#FFFFFF',
+  card: '#FFFFFF',
+  border: '#E5E7EB',
+  textPrimary: '#111827',
+  textSecondary: '#6B7280',
+  textDisabled: '#9CA3AF',
+  textInverse: '#FFFFFF',
+  success: '#34C759',
+  warning: '#FF9F0A',
+  error: '#FF3B30',
+  info: '#0A84FF',
+  shadowColor: '#000000',
+} as const;
+export type Colors = typeof colors;
